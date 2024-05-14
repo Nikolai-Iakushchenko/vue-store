@@ -27,6 +27,8 @@ onMounted(() => {
 <style module>
 .categoriesList {
   list-style: none;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 </style>

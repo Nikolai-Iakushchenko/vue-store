@@ -10,7 +10,9 @@ const props = defineProps<PropTypes>()
 
 <template>
   <li :class="$style.category">
-    <img :alt="props.item.name" :src="props.item.thumbnail.url" />
+    <div :class="$style.imageWrapper">
+      <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnail.url" />
+    </div>
     <p>{{ props.item.name }}</p>
   </li>
 </template>
@@ -19,5 +21,16 @@ const props = defineProps<PropTypes>()
 .category {
   border: 1px solid black;
   padding: 5px;
+}
+
+.image {
+  max-height: 300px;
+  max-width: 350px;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
