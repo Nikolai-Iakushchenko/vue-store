@@ -1,18 +1,18 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
   <header>
-<!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50"-->
-<!--         height="50" />-->
+    <!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50"-->
+    <!--         height="50" />-->
 
     <div class="wrapper">
       <h1>Vue Store</h1>
 
       <nav>
         <RouterLink to="/">Products</RouterLink>
-        <RouterLink to="/about">Cart</RouterLink>
+        <RouterLink to="/cart">Cart</RouterLink>
       </nav>
     </div>
   </header>
@@ -20,6 +20,4 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style module>
-
-</style>
+<style module></style>
