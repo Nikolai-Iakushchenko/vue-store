@@ -17,7 +17,10 @@ onMounted(() => {
 
 <template>
   <h3>Categories</h3>
-  <pre v-if="categories.data">{{ categories.data }}</pre>
+  <ul v-if="categories.data">
+    <li v-for="item in categories.data.items" :key="item.id">{{ item.name }}</li>
+  </ul>
+
   <p v-else>Loading Categories...</p>
 </template>
 
