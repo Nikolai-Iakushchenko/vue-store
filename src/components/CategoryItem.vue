@@ -21,6 +21,13 @@ const props = defineProps<PropTypes>()
 .category {
   border: 1px solid black;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.category p {
+  text-align: center;
 }
 
 .image {
