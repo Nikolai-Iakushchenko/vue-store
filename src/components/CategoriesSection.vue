@@ -18,10 +18,15 @@ onMounted(() => {
 
 <template>
   <h3>Categories</h3>
-  <ul v-if="categories.data">
+  <ul v-if="categories.data" :class="$style.categoriesList">
     <CategoryItem v-for="item in categories.data.items" :key="item.id" :item="item" />
   </ul>
   <p v-else>Loading Categories...</p>
 </template>
 
-<style module></style>
+<style module>
+.categoriesList {
+  list-style: none;
+  display: flex;
+}
+</style>

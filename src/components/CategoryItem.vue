@@ -9,7 +9,15 @@ const props = defineProps<PropTypes>()
 </script>
 
 <template>
-  <li>{{ props.item.name }}</li>
+  <li :class="$style.category">
+    <img :alt="props.item.name" :src="props.item.thumbnail.url" />
+    <p>{{ props.item.name }}</p>
+  </li>
 </template>
 
-<style module></style>
+<style module>
+.category {
+  border: 1px solid black;
+  padding: 5px;
+}
+</style>
