@@ -32,8 +32,9 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
       } catch (error) {
         console.log(error)
         this.categories.error = error
+      } finally {
+        this.categories.isLoading = false
       }
-      this.categories.isLoading = false
     }
   }
 })
