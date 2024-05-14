@@ -11,7 +11,7 @@ type Alts = {
   '<ISO_LANG_CODE>': string
 }
 
-type Category = {
+export type Category = {
   id: number
   parentId: number
   orderBy: number
