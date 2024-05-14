@@ -40,10 +40,16 @@ type Category = {
   alt: Alts
 }
 
-export type CategoriesData = {
+type CategoriesData = {
   total: number
   count: number
   offset: number
   limit: number
   items: Category[]
+}
+
+export type Categories = {
+  data: CategoriesData | null
+  isLoading: boolean
+  error: null | unknown
 }

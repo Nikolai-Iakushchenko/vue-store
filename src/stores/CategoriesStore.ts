@@ -1,15 +1,10 @@
 import { defineStore } from 'pinia'
 import { storeId } from '@/constants'
-// import axios from 'axios'
 import axios from '../axiosConfig'
-import type { CategoriesData } from '@/types/categoriesTypes'
+import type { Categories } from '@/types/categoriesTypes'
 
 type State = {
-  categories: {
-    data: CategoriesData | null
-    isLoading: boolean
-    error: null | unknown
-  }
+  categories: Categories
 }
 
 export const useCategoriesStore = defineStore('CategoriesStore', {
@@ -21,7 +16,7 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
     }
   }),
   getters: {
-    getCategories(state) {
+    getCategories(state): Categories {
       return state.categories
     }
   },

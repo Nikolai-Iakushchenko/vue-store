@@ -17,7 +17,7 @@ onMounted(() => {
 
 <template>
   <h3>Categories</h3>
-  <pre v-if="categories.data">{{ categories }}</pre>
+  <pre v-if="categories.data">{{ categories.data }}</pre>
   <p v-else>Loading Categories...</p>
 </template>
 
