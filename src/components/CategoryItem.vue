@@ -10,7 +10,7 @@ const props = defineProps<PropTypes>()
 
 <template>
   <li :class="$style.category">
-    <RouterLink :to="{ name: 'category', params: { categoryId: props.item.id } }">
+    <RouterLink :to="`${props.item.id}`">
       <div :class="$style.imageWrapper">
         <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnail.url" />
       </div>
