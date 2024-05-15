@@ -13,7 +13,7 @@ type State = {
   category: CategoryStore
 }
 
-export const useCategoryStore = defineStore('CategoriesStore', {
+export const useCategoryStore = defineStore('CategoryStore', {
   state: (): State => ({
     category: {
       data: null,
@@ -27,7 +27,7 @@ export const useCategoryStore = defineStore('CategoriesStore', {
     }
   },
   actions: {
-    async fetchCategory(categoryId: Category['id']) {
+    async fetchCategory(categoryId: string) {
       const url = `https://app.ecwid.com/api/v3/${storeId}/categories/${categoryId}`
 
       try {
