@@ -1,15 +1,4 @@
-type ImageDetails = {
-  url: string
-  width: number
-  height: number
-}
-
-type Translations = { '<ISO_LANG_CODE>': string }
-
-type Alts = {
-  main: string
-  '<ISO_LANG_CODE>': string
-}
+import type { Alts, ImageDetails, Translations } from '@/types/commonTypes'
 
 export type Category = {
   id: number
@@ -40,16 +29,10 @@ export type Category = {
   alt: Alts
 }
 
-type CategoriesData = {
+export type CategoriesData = {
   total: number
   count: number
   offset: number
   limit: number
   items: Category[]
-}
-
-export type Categories = {
-  data: CategoriesData | null
-  isLoading: boolean
-  error: null | unknown
 }

@@ -1,15 +1,20 @@
 <script lang="ts" setup>
+import { useCategoryStore } from '@/stores/CategoryStore'
+
 type PropTypes = {
-  categoryName: string
   id: string
 }
 
 const props = defineProps<PropTypes>()
+
+const categoryStore = useCategoryStore()
+
+// categoryStore.fetchCategory(categoryId)
 </script>
 
 <template>
-  <h2>Category: {{ categoryName }}</h2>
-  <p>id:</p>
+  <h2>Category:</h2>
+  <p>id: {{ id }}</p>
 </template>
 
 <style scoped></style>

@@ -11,9 +11,7 @@ const categories = computed(() => {
   return categoriesStore.categories
 })
 
-onMounted(() => {
-  categoriesStore.fetchCategories()
-})
+categoriesStore.fetchCategories()
 </script>
 
 <template>
