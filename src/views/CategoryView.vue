@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 type PropTypes = {
   categoryName: string
+  id: string
 }
 
 const props = defineProps<PropTypes>()
