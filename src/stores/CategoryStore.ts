@@ -33,7 +33,7 @@ export const useCategoryStore = defineStore('CategoryStore', {
       try {
         this.category.isLoading = true
         const response = await axios.get(url)
-        console.log('response', response)
+        console.log('fetchCategory response:', response)
         this.category.data = response.data
       } catch (error) {
         console.log(error)

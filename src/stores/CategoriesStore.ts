@@ -33,7 +33,7 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
       try {
         this.categories.isLoading = true
         const response = await axios.get(url)
-        console.log('response', response)
+        console.log('fetchCategories response', response)
         this.categories.data = response.data
       } catch (error) {
         console.log(error)
