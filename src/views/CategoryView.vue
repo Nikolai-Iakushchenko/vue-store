@@ -2,10 +2,12 @@
 import { useCategoryStore } from '@/stores/CategoryStore'
 
 type PropTypes = {
-  id: string
+  categoryId: string
 }
 
 const props = defineProps<PropTypes>()
+
+console.log('CategoryView props', props)
 
 const categoryStore = useCategoryStore()
 
@@ -14,7 +16,7 @@ const categoryStore = useCategoryStore()
 
 <template>
   <h2>Category:</h2>
-  <p>id: {{ id }}</p>
+  <p>id: {{ categoryId }}</p>
 </template>
 
 <style scoped></style>
