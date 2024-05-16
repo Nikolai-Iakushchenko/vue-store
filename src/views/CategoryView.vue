@@ -24,7 +24,7 @@ const products = computed(() => {
 </script>
 
 <template>
-  <div v-if="category.isLoading" class="loading">Loading...</div>
+  <div v-if="category.isLoading" class="loading">Loading Products...</div>
 
   <div v-if="category.error" class="error">{{ category.error }}</div>
 

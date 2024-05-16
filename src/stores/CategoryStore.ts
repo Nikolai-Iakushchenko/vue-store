@@ -45,6 +45,7 @@ export const useCategoryStore = defineStore('CategoryStore', {
       const productsSearchUrl = `https://app.ecwid.com/api/v3/${storeId}/products`
 
       try {
+        this.products.data = null
         this.category.isLoading = true
         const response = await axios.get(url)
         console.log('fetchCategory response.data:', response.data)
