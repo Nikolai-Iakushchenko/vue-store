@@ -2,6 +2,8 @@
 import { useCategoryStore } from '@/stores/CategoryStore'
 import type { Category } from '@/types/categoriesTypes'
 import { computed } from 'vue'
+import CategoryItem from '@/components/CategoryItem.vue'
+import ProductItem from '@/components/ProductItem.vue'
 
 const categoryStore = useCategoryStore()
 
@@ -16,8 +18,9 @@ categoryStore.fetchCategory(props.categoryId)
 const category = computed(() => {
   return categoryStore.category
 })
-
-// console.log('category', category.value.data)
+const products = computed(() => {
+  return categoryStore.products
+})
 </script>
 
 <template>
@@ -26,11 +29,20 @@ const category = computed(() => {
   <div v-if="category.error" class="error">{{ category.error }}</div>
 
   <div v-if="category.data">
-    <h2>Category: {{ category.data.name }}</h2>
-    <p>id: {{ props.categoryId }}</p>
+    <h2>Категория: {{ category.data.name }}</h2>
+    <ul :class="$style.productList">
+      <ProductItem v-for="product in products.data.items" :key="product.id" :item="product" />
+    </ul>
   </div>
 
   <p v-else>Loading Category...</p>
 </template>
 
-<style scoped></style>
+<style module>
+.productList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+</style>
