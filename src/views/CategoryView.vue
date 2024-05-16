@@ -10,7 +10,7 @@ type PropTypes = {
 }
 
 const props = defineProps<PropTypes>()
-console.log('props', props)
+// console.log('props', props)
 
 categoryStore.fetchCategory(props.categoryId)
 const category = computed(() => {
