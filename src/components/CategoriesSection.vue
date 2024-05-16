@@ -15,11 +15,13 @@ categoriesStore.fetchCategories()
 </script>
 
 <template>
-  <h3>Categories</h3>
-  <ul v-if="categories.data" :class="$style.categoriesList">
-    <CategoryItem v-for="item in categories.data.items" :key="item.id" :item="item" />
-  </ul>
-  <p v-else>Loading Categories...</p>
+  <div>
+    <h3>Categories</h3>
+    <div v-if="categories.isLoading" class="loading">Loading...</div>
+    <ul v-if="categories.data" :class="$style.categoriesList">
+      <CategoryItem v-for="item in categories.data.items" :key="item.id" :item="item" />
+    </ul>
+  </div>
 </template>
 
 <style module>
