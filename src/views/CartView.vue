@@ -1,6 +1,7 @@
 <script setup>
 import { useCartStore } from '@/stores/CartStore'
 import { computed } from 'vue'
+import CartItem from '@/components/CartItem.vue'
 
 const cartStore = useCartStore()
 const cart = computed(() => {
@@ -10,11 +11,13 @@ const cart = computed(() => {
 
 <template>
   <h2>Cart</h2>
-  <ul>
-    <li v-for="item in cart" :key="item.id" :item="item">
-      {{ item.name }}
-    </li>
+  <ul :class="$style.cartList">
+    <CartItem v-for="item in cart" :key="item.id" :product="item" />
   </ul>
 </template>
 
-<style module></style>
+<style module>
+.cartList {
+  list-style: none;
+}
+</style>
