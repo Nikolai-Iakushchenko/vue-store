@@ -38,13 +38,27 @@ watch(() => route.params.productId, fetchProduct, { immediate: true })
   <div v-if="isLoading" class="loading">Loading Product...</div>
 
   <div v-if="error" class="error">{{ error }}</div>
-
   <div v-if="product">
-    <div><img alt="product" src="" /></div>
-    <div>
-      <h2>Product: {{ product.name }}</h2>
+    <div :class="$style.productView">
+      <div><img :src="product.thumbnailUrl" alt="product" /></div>
+      <div :class="$style.rightColumn">
+        <h2>Product: {{ product.name }}</h2>
+        <p v-html="product.description" />
+        <p>Price: {{ product.price }}</p>
+        <button>Buy</button>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style module>
+.productView {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+.rightColumn > * {
+  margin-bottom: 10px;
+}
+</style>
