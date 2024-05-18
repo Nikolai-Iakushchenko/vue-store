@@ -1,13 +1,15 @@
 import { defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 import type { Product } from '@/types/productTypes'
+import type { RemovableRef } from '@vueuse/core'
 
 type State = {
-  cart: Product[]
+  cart: RemovableRef<Product[]>
 }
 
 export const useCartStore = defineStore('CartStore', {
   state: (): State => ({
-    cart: []
+    cart: useStorage('cart', [])
   }),
   actions: {
     add(product: Product) {
