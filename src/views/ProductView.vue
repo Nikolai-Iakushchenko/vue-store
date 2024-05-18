@@ -4,9 +4,12 @@ import { useCategoryStore } from '@/stores/CategoryStore'
 import { computed, ref, watch } from 'vue'
 import type { Product } from '@/types/productTypes'
 import { getProduct } from '@/utils/getProduct'
+import { useCartStore } from '@/stores/CartStore'
 
 const route = useRoute()
 const productId = route.params.productId
+
+const cartStore = useCartStore()
 
 // const categoryStore = useCategoryStore()
 //
@@ -45,7 +48,7 @@ watch(() => route.params.productId, fetchProduct, { immediate: true })
         <h2>Product: {{ product.name }}</h2>
         <p v-html="product.description" />
         <p>Price: {{ product.price }}</p>
-        <button>Buy</button>
+        <button :onclick="() => cartStore.add(product!)">Buy</button>
       </div>
     </div>
   </div>
