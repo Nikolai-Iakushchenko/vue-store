@@ -10,17 +10,16 @@ const props = defineProps<PropTypes>()
 
 <template>
   <li :class="$style.category">
-    <!--    <RouterLink :to="`${props.item.id}`">-->
-    <div :class="$style.imageWrapper">
-      <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnailUrl" />
-    </div>
-    <div>
-      <div>{{ props.item.name }}</div>
-      <div>Price: {{ props.item.price }}</div>
-      <button>Buy</button>
-    </div>
-
-    <!--    </RouterLink    >-->
+    <RouterLink :to="`/product/${props.item.id}`">
+      <div :class="$style.imageWrapper">
+        <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnailUrl" />
+      </div>
+      <div>
+        <div>{{ props.item.name }}</div>
+        <div>Price: {{ props.item.price }}</div>
+        <button>Buy</button>
+      </div>
+    </RouterLink>
   </li>
 </template>
 
