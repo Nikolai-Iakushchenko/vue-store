@@ -8,6 +8,8 @@ import { useRoute } from 'vue-router'
 import { getProducts } from '@/utils/getProducts'
 import type { Product } from '@/types/productTypes'
 import type { Ref } from 'vue'
+import type { Products } from '@/types/commonTypes'
+import { getCategory } from '@/utils/getCategory'
 
 const categoryStore = useCategoryStore()
 
@@ -28,17 +30,20 @@ const { categoryId } = props
 // })
 const route = useRoute()
 
-// const category = ref<Category | null>(null)
+const category = ref<Category | null>(null)
 const products = ref<Ref<Products> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
 const fetchProducts = async (categoryId) => {
-  error.value = products.value = null
+  error.value = category.value = products.value = null
   isLoading.value = true
 
   try {
-    products.value = await getProducts(categoryId)
+    category.value = await getCategory(categoryId)
+    if (category.value) {
+      products.value = await getProducts(category.value.productIds)
+    }
   } catch (error) {
     error.value = error.toString()
   } finally {
@@ -55,9 +60,9 @@ watch(() => route.params.categoryId, fetchProducts, { immediate: true })
   <div v-if="error" class="error">{{ error }}</div>
 
   <div v-if="products">
-    <h2>Категория: {{ products.category.name }}</h2>
+    <h2>Категория: {{ category.name }}</h2>
     <ul :class="$style.productList">
-      <ProductItem v-for="product in products.products.items" :key="product.id" :item="product" />
+      <ProductItem v-for="product in products.items" :key="product.id" :item="product" />
     </ul>
   </div>
 </template>
