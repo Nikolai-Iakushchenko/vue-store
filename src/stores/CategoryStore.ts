@@ -4,39 +4,26 @@ import axios from '../axiosConfig'
 import type { Category } from '@/types/categoriesTypes'
 import type { Product } from '@/types/productTypes'
 
-export type CategoryStore = {
-  data: Category | null
-  isLoading: boolean
-  error: null | unknown
-}
-
-export type ProductStore = {
-  data: Product[] | null
-  isLoading: boolean
-  error: null | unknown
-}
-
 type State = {
-  category: CategoryStore
-  products: ProductStore
+  category: Category | null
+  products: Product[] | null
+  isLoading: boolean
+  error: unknown | null
 }
 
 export const useCategoryStore = defineStore('CategoryStore', {
   state: (): State => ({
-    category: {
-      data: null,
-      isLoading: false,
-      error: null
-    },
-    products: {
-      data: null,
-      isLoading: false,
-      error: null
-    }
+    category: null,
+    products: null,
+    isLoading: false,
+    error: null
   }),
   getters: {
-    getCategory(state): CategoryStore {
+    getCategory(state): Category | null {
       return state.category
+    },
+    getProducts(state): Product[] | null {
+      return state.products
     }
   },
   actions: {
@@ -45,15 +32,11 @@ export const useCategoryStore = defineStore('CategoryStore', {
       const productsSearchUrl = `https://app.ecwid.com/api/v3/${storeId}/products`
 
       try {
-        this.products.data = null
-        this.category.isLoading = true
+        this.products = null
+        this.isLoading = true
         const response = await axios.get(url)
         console.log('fetchCategory response.data:', response.data)
-        this.category.data = response.data
-
-        // const productUrls = response.data.productIds.map(
-        //   (productId: string) => `https://app.ecwid.com/api/v3/${storeId}/products/${productId}`
-        // )
+        this.category = response.data
 
         const productIds = response.data.productIds.map(Number).join(',')
 
@@ -66,12 +49,12 @@ export const useCategoryStore = defineStore('CategoryStore', {
         })
 
         console.log('productsResponse', productsResponse)
-        this.products.data = productsResponse.data
-      } catch (error) {
+        this.products = productsResponse.data
+      } catch (error: unknown) {
         console.log(error)
-        this.category.error = error
+        this.error = error
       } finally {
-        this.category.isLoading = false
+        this.isLoading = false
       }
     }
   }

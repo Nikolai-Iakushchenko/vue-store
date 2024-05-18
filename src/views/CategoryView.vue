@@ -21,41 +21,42 @@ const props = defineProps<PropTypes>()
 const { categoryId } = props
 // console.log('props', props)
 
-// categoryStore.fetchCategory(props.categoryId)
-// const category = computed(() => {
-//   return categoryStore.category
-// })
-// const products = computed(() => {
-//   return categoryStore.products
-// })
+categoryStore.fetchCategory(props.categoryId)
+const category = computed(() => {
+  return categoryStore.category
+})
+const products = computed(() => {
+  return categoryStore.products
+})
+
 const route = useRoute()
 
-const category = ref<Category | null>(null)
-const products = ref<Ref<Product[]> | null>(null)
-const isLoading = ref(false)
-const error = ref(null)
+// const category = ref<Category | null>(null)
+// const products = ref<Ref<Product[]> | null>(null)
+// const isLoading = ref(false)
+// const error = ref(null)
 
-const fetchProducts = async (categoryId) => {
-  error.value = category.value = products.value = null
-  isLoading.value = true
+// const fetchProducts = async (categoryId) => {
+//   error.value = category.value = products.value = null
+//   isLoading.value = true
+//
+//   try {
+//     category.value = await getCategory(categoryId)
+//     products.value = await getProducts(category.value.productIds)
+//   } catch (error) {
+//     error.value = error.toString()
+//   } finally {
+//     isLoading.value = false
+//   }
+// }
 
-  try {
-    category.value = await getCategory(categoryId)
-    products.value = await getProducts(category.value.productIds)
-  } catch (error) {
-    error.value = error.toString()
-  } finally {
-    isLoading.value = false
-  }
-}
-
-watch(() => route.params.categoryId, fetchProducts, { immediate: true })
+watch(() => route.params.categoryId, categoryStore.fetchCategory, { immediate: true })
 </script>
 
 <template>
-  <div v-if="isLoading" class="loading">Loading Products...</div>
+  <div v-if="categoryStore.isLoading" class="loading">Loading Products...</div>
 
-  <div v-if="error" class="error">{{ error }}</div>
+  <div v-if="categoryStore.error" class="error">{{ categoryStore.error }}</div>
 
   <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
