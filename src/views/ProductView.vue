@@ -9,14 +9,12 @@ const productId = route.params.productId
 const categoryStore = useCategoryStore()
 
 const product = computed(() => {
-  return categoryStore.products.find((product) => product.id === productId)
+  return categoryStore.products.items.find((product) => product.id === +productId)
 })
-
-console.log('product', product)
 </script>
 
 <template>
-  <h2>Product: {{ productId }}</h2>
+  <h2>Product: {{ product.name }}</h2>
 </template>
 
 <style scoped></style>
