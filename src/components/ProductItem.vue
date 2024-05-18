@@ -1,23 +1,30 @@
 <script lang="ts" setup>
 import type { Product } from '@/types/productTypes'
+import { useCartStore } from '@/stores/CartStore'
 
 type PropTypes = {
-  item: Product
+  product: Product
 }
 
 const props = defineProps<PropTypes>()
+
+const cartStore = useCartStore()
 </script>
 
 <template>
   <li :class="$style.category">
-    <RouterLink :to="`/product/${props.item.id}`">
+    <RouterLink :to="`/product/${props.product.id}`">
       <div :class="$style.imageWrapper">
-        <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnailUrl" />
+        <img
+          :alt="props.product.name"
+          :class="$style.image"
+          :src="props.product.thumbnailUrl"
+        />
       </div>
       <div>
-        <div>{{ props.item.name }}</div>
-        <div>Price: {{ props.item.price }}</div>
-        <button>Buy</button>
+        <div>{{ props.product.name }}</div>
+        <div>Price: {{ props.product.price }}</div>
+        <button @click.prevent="(e) => cartStore.add(product!)">Buy</button>
       </div>
     </RouterLink>
   </li>

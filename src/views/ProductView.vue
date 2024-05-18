@@ -48,7 +48,7 @@ watch(() => route.params.productId, fetchProduct, { immediate: true })
         <h2>Product: {{ product.name }}</h2>
         <p v-html="product.description" />
         <p>Price: {{ product.price }}</p>
-        <button :onclick="() => cartStore.add(product!)">Buy</button>
+        <button @click.prevent="(e) => cartStore.add(product!)">Buy</button>
       </div>
     </div>
   </div>

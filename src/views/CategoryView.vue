@@ -61,7 +61,11 @@ watch(() => route.params.categoryId, fetchProducts, { immediate: true })
   <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
     <ul :class="$style.productList">
-      <ProductItem v-for="product in products.items" :key="product.id" :item="product" />
+      <ProductItem
+        v-for="product in products.items"
+        :key="product.id"
+        :product="product"
+      />
     </ul>
   </div>
 </template>
