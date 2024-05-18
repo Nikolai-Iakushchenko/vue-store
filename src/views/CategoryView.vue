@@ -41,9 +41,7 @@ const fetchProducts = async (categoryId) => {
 
   try {
     category.value = await getCategory(categoryId)
-    if (category.value) {
-      products.value = await getProducts(category.value.productIds)
-    }
+    products.value = await getProducts(category.value.productIds)
   } catch (error) {
     error.value = error.toString()
   } finally {
