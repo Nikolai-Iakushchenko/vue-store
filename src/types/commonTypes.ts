@@ -13,8 +13,3 @@ export type Alts = {
   main: string
   '<ISO_LANG_CODE>': string
 }
-
-export type Products = {
-  category: Category
-  products: Product[]
-}

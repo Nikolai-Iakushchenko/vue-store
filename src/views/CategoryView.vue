@@ -31,7 +31,7 @@ const { categoryId } = props
 const route = useRoute()
 
 const category = ref<Category | null>(null)
-const products = ref<Ref<Products> | null>(null)
+const products = ref<Ref<Product[]> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
@@ -57,7 +57,7 @@ watch(() => route.params.categoryId, fetchProducts, { immediate: true })
 
   <div v-if="error" class="error">{{ error }}</div>
 
-  <div v-if="products">
+  <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
     <ul :class="$style.productList">
       <ProductItem v-for="product in products.items" :key="product.id" :item="product" />
