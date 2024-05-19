@@ -15,14 +15,14 @@ const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchProducts = async (categoryId: string) => {
+const fetchProducts = async (categoryId) => {
   error.value = category.value = products.value = null
   isLoading.value = true
 
   try {
     category.value = await getCategory(categoryId)
-    const { productsIds } = category.value
-    products.value = await getProducts(productsIds)
+    const { productIds } = category.value
+    products.value = await getProducts(productIds)
   } catch (error) {
     error.value = error.toString()
   } finally {
