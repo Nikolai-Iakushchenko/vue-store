@@ -1,5 +1,3 @@
-import type { Category } from '@/types/categoriesTypes'
-
 export interface Product {
   thumbnailUrl: string
   id: number

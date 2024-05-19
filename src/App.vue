@@ -5,9 +5,6 @@ import CartIcon from '@/components/CartIcon.vue'
 
 <template>
   <header :class="$style.header">
-    <!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50"-->
-    <!--         height="50" />-->
-
     <RouterLink to="/"><h1>Vue Store</h1></RouterLink>
     <RouterLink to="/cart">
       <CartIcon />
