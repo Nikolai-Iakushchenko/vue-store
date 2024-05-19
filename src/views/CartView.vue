@@ -12,7 +12,7 @@ const cart = computed(() => {
 <template>
   <h2>Cart</h2>
   <ul :class="$style.cartList">
-    <CartItem v-for="item in cart" :key="item.id" :product="item" />
+    <CartItem v-for="item in cart" :key="item.cartId" :cartItem="item" />
   </ul>
   <button>Place Order</button>
 </template>

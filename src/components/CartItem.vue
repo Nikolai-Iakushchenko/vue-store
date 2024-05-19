@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import type { Product } from '@/types/productTypes'
-import { useCartStore } from '@/stores/CartStore'
+import { CartItem, useCartStore } from '@/stores/CartStore'
 
 type PropTypes = {
-  product: Product
+  cartItem: CartItem
 }
 
 const props = defineProps<PropTypes>()
@@ -12,8 +11,10 @@ const cartStore = useCartStore()
 
 <template>
   <li :class="$style.cartItem">
-    {{ props.product.name }}
-    <button :onclick="() => cartStore.delete(props.product.id)">Delete</button>
+    {{ props.cartItem.name }}
+    <button :onclick="() => cartStore.delete(props.cartItem.cartId)">
+      Delete
+    </button>
   </li>
 </template>
 

@@ -1,10 +1,15 @@
 import { defineStore } from 'pinia'
+import { uuid } from 'vue-uuid'
 import { useStorage } from '@vueuse/core'
 import type { Product } from '@/types/productTypes'
 import type { RemovableRef } from '@vueuse/core'
 
+export interface CartItem extends Product {
+  cartId: string
+}
+
 type State = {
-  cart: RemovableRef<Product[]>
+  cart: RemovableRef<CartItem[]>
 }
 
 export const useCartStore = defineStore('CartStore', {
@@ -13,10 +18,11 @@ export const useCartStore = defineStore('CartStore', {
   }),
   actions: {
     add(product: Product) {
-      this.cart.push(product)
+      const cartItem = { ...product, cartId: uuid.v4() }
+      this.cart.push(cartItem)
     },
-    delete(productId: number) {
-      this.cart = this.cart.filter((item) => item.id !== productId)
+    delete(cartId: string) {
+      this.cart = this.cart.filter((item) => item.cartId !== cartId)
     }
   }
 })
