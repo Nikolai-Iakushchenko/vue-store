@@ -3,21 +3,20 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
+  <header :class="$style.header">
     <!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50"-->
     <!--         height="50" />-->
 
-    <div class="wrapper">
-      <h1>Vue Store</h1>
-
-      <nav>
-        <RouterLink to="/">Products</RouterLink>
-        <RouterLink to="/cart">Cart</RouterLink>
-      </nav>
-    </div>
+    <RouterLink to="/"><h1>Vue Store</h1></RouterLink>
+    <RouterLink to="/cart">Cart</RouterLink>
   </header>
 
   <RouterView />
 </template>
 
-<style module></style>
+<style module>
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+</style>
