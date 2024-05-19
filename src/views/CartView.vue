@@ -14,7 +14,7 @@ const cart = computed(() => {
   <ul :class="$style.cartList">
     <CartItem v-for="item in cart" :key="item.cartId" :cartItem="item" />
   </ul>
-  <button>Place Order</button>
+  <button v-if="cartStore.numberOfItems">Place Order</button>
 </template>
 
 <style module>

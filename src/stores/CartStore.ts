@@ -16,6 +16,7 @@ export const useCartStore = defineStore('CartStore', {
   state: (): State => ({
     cart: useStorage('cart', [])
   }),
+  getters: { numberOfItems: (state) => state.cart.length },
   actions: {
     add(product: Product) {
       const cartItem = { ...product, cartId: uuid.v4() }
