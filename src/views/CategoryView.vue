@@ -8,7 +8,6 @@ import { useRoute } from 'vue-router'
 import { getProducts } from '@/utils/getProducts'
 import type { Product } from '@/types/productTypes'
 import type { Ref } from 'vue'
-import type { Products } from '@/types/commonTypes'
 import { getCategory } from '@/utils/getCategory'
 
 const categoryStore = useCategoryStore()
@@ -55,7 +54,6 @@ watch(() => route.params.categoryId, fetchProducts, { immediate: true })
 
 <template>
   <div v-if="isLoading" class="loading">Loading...</div>
-
   <div v-if="error" class="error">{{ error }}</div>
 
   <div v-if="category && products">
