@@ -23,7 +23,7 @@ const fetchProducts = async (categoryId: string) => {
     category.value = await getCategory(categoryId)
     const { productIds } = category.value
     products.value = await getProducts(productIds)
-  } catch (err) {
+  } catch (err: any) {
     error.value = err.toString()
   } finally {
     isLoading.value = false
