@@ -15,16 +15,26 @@ a,
 }
 
 button {
-  background: royalblue;
+  background: #3665f3;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
 }
 
+button:hover {
+  cursor: pointer;
+  filter: brightness(96%);
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
 @media (hover: hover) {
   a:hover {
-    background-color: lightgray;
+    /*background-color: lightgray;*/
   }
 }
 
