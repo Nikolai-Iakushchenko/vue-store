@@ -4,7 +4,7 @@ import { ref, watch } from 'vue'
 import ProductItem from '@/components/ProductItem.vue'
 import { useRoute } from 'vue-router'
 import { getProducts } from '@/utils/getProducts'
-import type { Product, ProductData } from '@/types/productTypes'
+import type { ProductData } from '@/types/productTypes'
 import type { Ref } from 'vue'
 import { getCategory } from '@/utils/getCategory'
 
@@ -21,9 +21,8 @@ const fetchProducts = async (categoryId) => {
 
   try {
     category.value = await getCategory(categoryId)
-    if (category.value) {
-      products.value = await getProducts(category.value.productIds)
-    }
+    const { productsIds } = category.value
+    products.value = await getProducts(productsIds)
   } catch (error) {
     error.value = error.toString()
   } finally {
