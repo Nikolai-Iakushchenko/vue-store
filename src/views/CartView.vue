@@ -20,5 +20,6 @@ const cart = computed(() => {
 <style module>
 .cartList {
   list-style: none;
+  padding-inline-start: 0;
 }
 </style>

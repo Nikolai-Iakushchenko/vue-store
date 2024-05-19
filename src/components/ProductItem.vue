@@ -32,7 +32,7 @@ const cartStore = useCartStore()
 
 <style module>
 .category {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 5px;
   display: flex;
   flex-direction: column;

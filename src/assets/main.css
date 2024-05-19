@@ -14,6 +14,14 @@ a,
   padding: 3px;
 }
 
+button {
+  background: royalblue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: lightgray;

@@ -12,7 +12,11 @@ const props = defineProps<PropTypes>()
   <li :class="$style.category">
     <RouterLink :to="`/category/${props.item.id}`">
       <div :class="$style.imageWrapper">
-        <img :alt="props.item.name" :class="$style.image" :src="props.item.thumbnail.url" />
+        <img
+          :alt="props.item.name"
+          :class="$style.image"
+          :src="props.item.thumbnail.url"
+        />
       </div>
       <p>{{ props.item.name }}</p>
     </RouterLink>
@@ -21,7 +25,7 @@ const props = defineProps<PropTypes>()
 
 <style module>
 .category {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 5px;
   display: flex;
   flex-direction: column;
