@@ -38,7 +38,7 @@ watch(() => route.params.productId, fetchProduct, { immediate: true })
 </script>
 
 <template>
-  <div v-if="isLoading" class="loading">Loading Product...</div>
+  <div v-if="isLoading" class="loading">Loading...</div>
 
   <div v-if="error" class="error">{{ error }}</div>
   <div v-if="product">

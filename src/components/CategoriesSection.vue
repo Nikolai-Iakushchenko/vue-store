@@ -17,7 +17,7 @@ categoriesStore.fetchCategories()
 <template>
   <div>
     <h2>Categories</h2>
-    <div v-if="categories.isLoading" class="loading">Loading Categories...</div>
+    <div v-if="categories.isLoading" class="loading">Loading...</div>
     <ul v-if="categories.data" :class="$style.categoriesList">
       <CategoryItem
         v-for="item in categories.data.items"

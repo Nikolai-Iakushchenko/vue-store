@@ -54,7 +54,7 @@ watch(() => route.params.categoryId, fetchProducts, { immediate: true })
 </script>
 
 <template>
-  <div v-if="isLoading" class="loading">Loading Products...</div>
+  <div v-if="isLoading" class="loading">Loading...</div>
 
   <div v-if="error" class="error">{{ error }}</div>
 
