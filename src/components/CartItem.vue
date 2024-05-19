@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { CartItem, useCartStore } from '@/stores/CartStore'
+import { useCartStore } from '@/stores/CartStore'
+import type { CartItem } from '@/types/cartTypes'
 
 type PropTypes = {
   cartItem: CartItem
