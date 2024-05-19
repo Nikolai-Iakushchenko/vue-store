@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { useCategoryStore } from '@/stores/CategoryStore'
 import type { Category } from '@/types/categoriesTypes'
-import { computed, ref, watch } from 'vue'
-import CategoryItem from '@/components/CategoryItem.vue'
+import { ref, watch } from 'vue'
 import ProductItem from '@/components/ProductItem.vue'
 import { useRoute } from 'vue-router'
 import { getProducts } from '@/utils/getProducts'
@@ -10,23 +8,12 @@ import type { Product } from '@/types/productTypes'
 import type { Ref } from 'vue'
 import { getCategory } from '@/utils/getCategory'
 
-const categoryStore = useCategoryStore()
-
 type PropTypes = {
   categoryId: string
 }
 
 const props = defineProps<PropTypes>()
 const { categoryId } = props
-// console.log('props', props)
-
-// categoryStore.fetchCategory(props.categoryId)
-// const category = computed(() => {
-//   return categoryStore.category
-// })
-// const products = computed(() => {
-//   return categoryStore.products
-// })
 
 const route = useRoute()
 
