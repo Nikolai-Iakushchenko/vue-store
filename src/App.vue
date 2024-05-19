@@ -22,4 +22,8 @@ import CartIcon from '@/components/CartIcon.vue'
   display: grid;
   grid-template-columns: 1fr auto;
 }
+
+.header a {
+  color: #005bff;
+}
 </style>
