@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { RouterLink, RouterView } from 'vue-router'
+import CartIcon from '@/components/CartIcon.vue'
 </script>
 
 <template>
@@ -8,7 +9,9 @@ import { RouterLink, RouterView } from 'vue-router'
     <!--         height="50" />-->
 
     <RouterLink to="/"><h1>Vue Store</h1></RouterLink>
-    <RouterLink to="/cart">Cart</RouterLink>
+    <RouterLink to="/cart">
+      <CartIcon />
+    </RouterLink>
   </header>
 
   <RouterView />
