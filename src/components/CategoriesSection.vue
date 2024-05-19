@@ -34,5 +34,6 @@ categoriesStore.fetchCategories()
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  padding-inline-start: 0;
 }
 </style>
