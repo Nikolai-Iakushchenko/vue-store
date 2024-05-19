@@ -20,7 +20,11 @@ const placePurchase = () => {
   <ul :class="$style.cartList">
     <CartItem v-for="item in cart" :key="item.cartId" :cartItem="item" />
   </ul>
-  <button v-if="cartStore.numberOfItems" @click="placePurchase">
+  <button
+    v-if="cartStore.numberOfItems"
+    :class="$style.placeOrderButton"
+    @click="placePurchase"
+  >
     Place Order
   </button>
   <p v-if="purchaseMade">Congratulations on your purchase!</p>
@@ -30,5 +34,10 @@ const placePurchase = () => {
 .cartList {
   list-style: none;
   padding-inline-start: 0;
+  margin-bottom: 20px;
+}
+
+.placeOrderButton {
+  margin-bottom: 20px;
 }
 </style>
