@@ -17,8 +17,8 @@ const fetchProduct = async (productId: string) => {
 
   try {
     product.value = await getProduct(productId)
-  } catch (error) {
-    error.value = error.toString()
+  } catch (err) {
+    error.value = err.toString()
   } finally {
     isLoading.value = false
   }

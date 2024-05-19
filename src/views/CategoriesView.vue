@@ -14,8 +14,8 @@ const fetchCategories = async () => {
 
   try {
     categoriesData.value = await getCategories()
-  } catch (error) {
-    error.value = error.toString()
+  } catch (err) {
+    error.value = err.toString()
   } finally {
     isLoading.value = false
   }

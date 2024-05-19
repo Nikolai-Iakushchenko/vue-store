@@ -15,7 +15,7 @@ const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchProducts = async (categoryId) => {
+const fetchProducts = async (categoryId: string) => {
   error.value = category.value = products.value = null
   isLoading.value = true
 
@@ -23,8 +23,8 @@ const fetchProducts = async (categoryId) => {
     category.value = await getCategory(categoryId)
     const { productIds } = category.value
     products.value = await getProducts(productIds)
-  } catch (error) {
-    error.value = error.toString()
+  } catch (err) {
+    error.value = err.toString()
   } finally {
     isLoading.value = false
   }
