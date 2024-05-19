@@ -14,6 +14,9 @@ export const useCartStore = defineStore('CartStore', {
   actions: {
     add(product: Product) {
       this.cart.push(product)
+    },
+    delete(productId: number) {
+      this.cart = this.cart.filter((item) => item.id !== productId)
     }
   }
 })
