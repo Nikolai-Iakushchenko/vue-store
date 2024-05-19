@@ -1,3 +1,5 @@
+import type { Category } from '@/types/categoriesTypes'
+
 export interface Product {
   thumbnailUrl: string
   id: number
@@ -7,4 +9,8 @@ export interface Product {
   categoryIds: number[]
   defaultCategoryId: number
   volume: number
+}
+
+export type ProductData = {
+  items: Product[]
 }

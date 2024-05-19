@@ -4,21 +4,14 @@ import { ref, watch } from 'vue'
 import ProductItem from '@/components/ProductItem.vue'
 import { useRoute } from 'vue-router'
 import { getProducts } from '@/utils/getProducts'
-import type { Product } from '@/types/productTypes'
+import type { Product, ProductData } from '@/types/productTypes'
 import type { Ref } from 'vue'
 import { getCategory } from '@/utils/getCategory'
-
-type PropTypes = {
-  categoryId: string
-}
-
-const props = defineProps<PropTypes>()
-const { categoryId } = props
 
 const route = useRoute()
 
 const category = ref<Category | null>(null)
-const products = ref<Ref<Product[]> | null>(null)
+const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
@@ -28,7 +21,9 @@ const fetchProducts = async (categoryId) => {
 
   try {
     category.value = await getCategory(categoryId)
-    products.value = await getProducts(category.value.productIds)
+    if (category.value) {
+      products.value = await getProducts(category.value.productIds)
+    }
   } catch (error) {
     error.value = error.toString()
   } finally {

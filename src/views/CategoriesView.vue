@@ -4,12 +4,6 @@ import CategoryItem from '@/components/CategoryItem.vue'
 import type { CategoriesData } from '@/types/categoriesTypes'
 import { getCategories } from '@/utils/getCategories'
 
-// const categoriesStore = useCategoriesStore()
-// const categories = computed(() => {
-//   return categoriesStore.categories
-// })
-//
-// categoriesStore.fetchCategories()
 const categoriesData = ref<CategoriesData | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
