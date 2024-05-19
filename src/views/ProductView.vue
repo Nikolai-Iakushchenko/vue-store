@@ -11,7 +11,7 @@ const product = ref<Product | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchProduct = async (productId) => {
+const fetchProduct = async (productId: string) => {
   error.value = product.value = null
   isLoading.value = true
 
