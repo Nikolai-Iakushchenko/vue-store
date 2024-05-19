@@ -1,22 +1,12 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
-import { useCategoryStore } from '@/stores/CategoryStore'
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import type { Product } from '@/types/productTypes'
 import { getProduct } from '@/utils/getProduct'
 import { useCartStore } from '@/stores/CartStore'
 
 const route = useRoute()
-const productId = route.params.productId
-
 const cartStore = useCartStore()
-
-// const categoryStore = useCategoryStore()
-//
-// const product = computed(() => {
-//   return categoryStore.products.items.find((product) => product.id === +productId)
-// })
-
 const product = ref<Product | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
@@ -39,8 +29,8 @@ watch(() => route.params.productId, fetchProduct, { immediate: true })
 
 <template>
   <div v-if="isLoading" class="loading">Loading...</div>
-
   <div v-if="error" class="error">{{ error }}</div>
+
   <div v-if="product">
     <div :class="$style.productView">
       <div><img :src="product.thumbnailUrl" alt="product" /></div>
