@@ -35,16 +35,3 @@ button:active {
   position: relative;
   top: 1px;
 }
-
-@media (hover: hover) {
-  a:hover {
-    /*background-color: lightgray;*/
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    /*display: flex;*/
-    /*place-items: center;*/
-  }
-}
