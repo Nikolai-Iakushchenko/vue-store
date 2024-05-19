@@ -11,7 +11,7 @@ const product = ref<Product | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchProduct = async (productId: string) => {
+const fetchProduct = async (productId: string): Promise<void> => {
   error.value = product.value = null
   isLoading.value = true
 
@@ -24,7 +24,7 @@ const fetchProduct = async (productId: string) => {
   }
 }
 
-watch(() => route.params.productId, fetchProduct, { immediate: true })
+watch(() => route.params.productId as string, fetchProduct, { immediate: true })
 </script>
 
 <template>
