@@ -14,9 +14,6 @@ const route = useRoute()
 const categoriesStore = useCategoriesStore()
 
 const category = ref<Category | null>(null)
-
-const subCategories = categoriesStore.getSubcategories(+route.params.categoryId)
-
 const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
@@ -47,9 +44,11 @@ watch(() => route.params.categoryId as string, fetchProducts, {
 
   <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
-    <div v-if="subCategories?.length">
+    <div v-if="categoriesStore.getSubcategories(category.id).length">
       <h3>Subcategories:</h3>
-      <CategoriesList :categories="subCategories" />
+      <CategoriesList
+        :categories="categoriesStore.getSubcategories(category.id)"
+      />
     </div>
     <h3>Products:</h3>
     <ul :class="$style.productList">

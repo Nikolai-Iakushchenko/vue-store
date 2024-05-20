@@ -26,10 +26,9 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
       return state.categories
     },
     getSubcategories: (state) => {
-      return (id: number): Category[] | null => {
-        return (
-          state.categories.data?.items.filter((item) => item.parentId === id) ||
-          null
+      return (id: number): Category[] => {
+        return state.categories.data!.items.filter(
+          (item) => item.parentId === id
         )
       }
     }
