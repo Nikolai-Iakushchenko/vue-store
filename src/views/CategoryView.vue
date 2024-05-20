@@ -7,10 +7,16 @@ import { getProducts } from '@/utils/getProducts'
 import type { ProductData } from '@/types/productTypes'
 import type { Ref } from 'vue'
 import { getCategory } from '@/utils/getCategory'
+import { useCategoriesStore } from '@/stores/CategoriesStore'
+import CategoriesList from '@/components/CategoriesList.vue'
 
 const route = useRoute()
+const categoriesStore = useCategoriesStore()
 
 const category = ref<Category | null>(null)
+
+const subCategories = categoriesStore.getSubcategories(+route.params.categoryId)
+
 const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
@@ -41,7 +47,10 @@ watch(() => route.params.categoryId as string, fetchProducts, {
 
   <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
-    <h3>Subcategories:</h3>
+    <div v-if="subCategories?.length">
+      <h3>Subcategories:</h3>
+      <CategoriesList :categories="subCategories" />
+    </div>
     <h3>Products:</h3>
     <ul :class="$style.productList">
       <ProductItem

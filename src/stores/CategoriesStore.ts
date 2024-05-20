@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { storeId } from '@/constants'
 import axios from '../axiosConfig'
-import type { CategoriesData } from '@/types/categoriesTypes'
+import type { CategoriesData, Category } from '@/types/categoriesTypes'
 
 export type CategoriesStore = {
   data: CategoriesData | null
@@ -24,6 +24,14 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
   getters: {
     getCategories(state): CategoriesStore {
       return state.categories
+    },
+    getSubcategories: (state) => {
+      return (id: number): Category[] | null => {
+        return (
+          state.categories.data?.items.filter((item) => item.parentId === id) ||
+          null
+        )
+      }
     }
   },
   actions: {
