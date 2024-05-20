@@ -1,38 +1,50 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import CategoryItem from '@/components/CategoryItem.vue'
 import type { CategoriesData } from '@/types/categoriesTypes'
 import { getCategories } from '@/utils/getCategories'
+import { useCategoriesStore } from '@/stores/CategoriesStore'
 
-const categoriesData = ref<CategoriesData | null>(null)
-const isLoading = ref(false)
-const error = ref(null)
+// const categoriesData = ref<CategoriesData | null>(null)
+// const isLoading = ref(false)
+// const error = ref(null)
+//
+// const fetchCategories = async () => {
+//   categoriesData.value = null
+//   isLoading.value = true
+//
+//   try {
+//     categoriesData.value = await getCategories()
+//   } catch (err: any) {
+//     error.value = err.toString()
+//   } finally {
+//     isLoading.value = false
+//   }
+// }
+//
+// fetchCategories()
+const categoriesStore = useCategoriesStore()
+const getCategories = computed(() => {
+  return categoriesStore.getCategories
+})
+const categories = computed(() => {
+  return categoriesStore.categories
+})
 
-const fetchCategories = async () => {
-  categoriesData.value = null
-  isLoading.value = true
-
-  try {
-    categoriesData.value = await getCategories()
-  } catch (err: any) {
-    error.value = err.toString()
-  } finally {
-    isLoading.value = false
-  }
-}
-
-fetchCategories()
+categoriesStore.fetchCategories()
 </script>
 
 <template>
   <div>
     <h2>Categories</h2>
-    <div v-if="isLoading" class="loading">Loading...</div>
-    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="categories.isLoading" class="loading">Loading...</div>
+    <div v-if="categories.error" class="error">
+      {{ categories.error }}
+    </div>
 
-    <ul v-if="categoriesData" :class="$style.categoriesList">
+    <ul v-if="categories.data" :class="$style.categoriesList">
       <CategoryItem
-        v-for="item in categoriesData.items"
+        v-for="item in categories.data.items"
         :key="item.id"
         :item="item"
       />
