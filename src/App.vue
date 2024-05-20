@@ -17,7 +17,8 @@ import CartIcon from '@/components/CartIcon.vue'
 <style module>
 .header {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
 }
 
 .header a {
