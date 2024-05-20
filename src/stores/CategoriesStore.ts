@@ -40,6 +40,7 @@ export const useCategoriesStore = defineStore('CategoriesStore', {
 
       try {
         this.categories.isLoading = true
+        this.categories.data = this.categories.error = null
         const response = await axios.get(url)
         this.categories.data = response.data
       } catch (err) {
