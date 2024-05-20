@@ -6,6 +6,7 @@ export type ImageDetails = {
 
 export type Category = {
   id: number
+  parentId: number
   name: string
   thumbnail: ImageDetails
   productIds: number[]

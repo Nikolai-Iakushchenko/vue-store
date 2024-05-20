@@ -41,6 +41,8 @@ watch(() => route.params.categoryId as string, fetchProducts, {
 
   <div v-if="category && products">
     <h2>Category: {{ category.name }}</h2>
+    <h3>Subcategories:</h3>
+    <h3>Products:</h3>
     <ul :class="$style.productList">
       <ProductItem
         v-for="product in products.items"
