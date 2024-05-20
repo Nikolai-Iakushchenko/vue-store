@@ -1,32 +1,9 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import CategoryItem from '@/components/CategoryItem.vue'
-import type { CategoriesData } from '@/types/categoriesTypes'
-import { getCategories } from '@/utils/getCategories'
+import { computed } from 'vue'
 import { useCategoriesStore } from '@/stores/CategoriesStore'
+import CategoriesList from '@/components/CategoriesList.vue'
 
-// const categoriesData = ref<CategoriesData | null>(null)
-// const isLoading = ref(false)
-// const error = ref(null)
-//
-// const fetchCategories = async () => {
-//   categoriesData.value = null
-//   isLoading.value = true
-//
-//   try {
-//     categoriesData.value = await getCategories()
-//   } catch (err: any) {
-//     error.value = err.toString()
-//   } finally {
-//     isLoading.value = false
-//   }
-// }
-//
-// fetchCategories()
 const categoriesStore = useCategoriesStore()
-const getCategories = computed(() => {
-  return categoriesStore.getCategories
-})
 const categories = computed(() => {
   return categoriesStore.categories
 })
@@ -42,22 +19,11 @@ categoriesStore.fetchCategories()
       {{ categories.error }}
     </div>
 
-    <ul v-if="categories.data" :class="$style.categoriesList">
-      <CategoryItem
-        v-for="item in categories.data.items"
-        :key="item.id"
-        :item="item"
-      />
-    </ul>
+    <CategoriesList
+      v-if="categories.data"
+      :categories="categories.data.items"
+    />
   </div>
 </template>
 
-<style module>
-.categoriesList {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding-inline-start: 0;
-}
-</style>
+<style module></style>
