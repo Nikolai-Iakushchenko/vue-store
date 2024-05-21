@@ -22,6 +22,6 @@ import CartIcon from '@/components/CartIcon.vue'
 }
 
 .header a {
-  color: #005bff;
+  color: dimgray;
 }
 </style>
