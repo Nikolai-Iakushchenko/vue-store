@@ -73,11 +73,14 @@ const fetchCategory = async (categoryId: string) => {
         (item) => item.parentId === category.value.id
       )
 
-      // console.log('products.value', products.value)
-      //
+      console.log('products.value', products.value)
+
       // products.value = products.value.map((product) =>
       //   product.categoryIds.filter((id) => id === category.value.id)
       // )
+      products.value = products.value.filter((product) =>
+        category.value.productIds.includes(product.id)
+      )
 
       // category
     } catch (e: any) {
