@@ -42,29 +42,37 @@ const category = ref<Category | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchCategoriesAndProducts = async () => {
-  error.value = null
-  categories.value = products.value = []
-  isLoading.value = true
-
-  try {
-    categories.value = await getCategories()
-    products.value = await getProducts()
-  } catch (e: any) {
-    error.value = e.toString()
-  } finally {
-    isLoading.value = false
-  }
-}
+// const fetchCategoriesAndProducts = async () => {
+//   error.value = null
+//   categories.value = products.value = []
+//   isLoading.value = true
+//
+//   try {
+//     categories.value = await getCategories()
+//     products.value = await getProducts()
+//   } catch (e: any) {
+//     error.value = e.toString()
+//   } finally {
+//     isLoading.value = false
+//   }
+// }
 
 const fetchCategory = async (categoryId: string) => {
   error.value = category.value = null
   isLoading.value = true
 
-  if (route.params.categoryId !== undefined) {
-    console.log('route.params.categoryId', route.params.categoryId)
+  console.log('route.params.categoryId', route.params.categoryId)
 
-    try {
+  try {
+    if (!categories.value.length || route.params.categoryId === undefined) {
+      categories.value = await getCategories()
+    }
+
+    if (!products.value.length || route.params.categoryId === undefined) {
+      products.value = await getProducts()
+    }
+
+    if (route.params.categoryId !== undefined) {
       category.value = await getCategory(categoryId)
       // console.log('categories.value', categories.value)
       console.log('category.value', category.value)
@@ -82,15 +90,13 @@ const fetchCategory = async (categoryId: string) => {
       products.value = products.value.filter((product) =>
         category.value.productIds.includes(product.id)
       )
-
-      // category
-    } catch (e: any) {
-      error.value = e.toString()
-    } finally {
-      isLoading.value = false
     }
-  } else {
-    fetchCategoriesAndProducts()
+
+    // category
+  } catch (e: any) {
+    error.value = e.toString()
+  } finally {
+    isLoading.value = false
   }
 }
 
