@@ -28,9 +28,6 @@ watch(() => route.params.productId as string, fetchProduct, { immediate: true })
 </script>
 
 <template>
-  <div v-if="isLoading" class="loading">Loading...</div>
-  <div v-if="error" class="error">{{ error }}</div>
-
   <div v-if="product">
     <div :class="$style.productView">
       <div><img :src="product.thumbnailUrl" alt="product" /></div>
@@ -42,6 +39,9 @@ watch(() => route.params.productId as string, fetchProduct, { immediate: true })
       </div>
     </div>
   </div>
+
+  <div v-if="isLoading" class="loading">Loading...</div>
+  <div v-if="error" class="error">{{ error }}</div>
 </template>
 
 <style module>

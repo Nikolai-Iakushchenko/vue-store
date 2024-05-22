@@ -55,14 +55,14 @@ watch(() => route.params.categoryId as string, fetchCategory, {
 
 <template>
   <div>
-    <div v-if="isLoading" class="loading">Loading...</div>
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
-    <h1 v-if="category">Category: {{ category.name }}</h1>
-    <CategoriesList v-if="categories.length" :categories="categories" />
-    <ProductsList v-if="products.length" :products="products" />
+    {{ error }}
   </div>
+  <h1 v-if="category">Category: {{ category.name }}</h1>
+  <CategoriesList v-if="categories.length" :categories="categories" />
+  <ProductsList v-if="products.length" :products="products" />
+
+  <div v-if="isLoading" class="loading">Loading...</div>
+  <div v-if="error" class="error"></div>
 </template>
 
 <style module></style>
