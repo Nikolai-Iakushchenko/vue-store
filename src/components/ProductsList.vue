@@ -36,8 +36,10 @@ const props = defineProps<Props>()
 .productList {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   padding-inline-start: 0;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  height: 100%;
 }
 </style>

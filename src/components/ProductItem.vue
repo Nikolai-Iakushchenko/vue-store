@@ -44,13 +44,15 @@ const cartStore = useCartStore()
 }
 
 .image {
-  max-height: 300px;
-  max-width: 350px;
+  object-fit: scale-down;
+  width: 100%;
+  height: 100%;
 }
 
 .imageWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 1;
 }
 </style>
