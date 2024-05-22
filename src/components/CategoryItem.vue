@@ -10,7 +10,7 @@ const props = defineProps<PropTypes>()
 
 <template>
   <li :class="$style.category">
-    <RouterLink :to="`/category/${props.item.id}`">
+    <RouterLink :class="$style.link" :to="`/category/${props.item.id}`">
       <div :class="$style.imageWrapper">
         <img
           :alt="props.item.name"
@@ -34,6 +34,10 @@ const props = defineProps<PropTypes>()
 
 .category p {
   text-align: center;
+}
+
+.link {
+  height: 100%;
 }
 
 .image {

@@ -13,19 +13,19 @@ const cartStore = useCartStore()
 
 <template>
   <li :class="$style.category">
-    <RouterLink :to="`/product/${props.product.id}`">
-      <div :class="$style.imageWrapper">
-        <img
-          :alt="props.product.name"
-          :class="$style.image"
-          :src="props.product.thumbnailUrl"
-        />
-      </div>
+    <RouterLink :class="$style.link" :to="`/product/${props.product.id}`">
       <div>
+        <div :class="$style.imageWrapper">
+          <img
+            :alt="props.product.name"
+            :class="$style.image"
+            :src="props.product.thumbnailUrl"
+          />
+        </div>
         <div>{{ props.product.name }}</div>
         <div>Price: {{ props.product.price }}</div>
-        <button @click.prevent="(e) => cartStore.add(product!)">Buy</button>
       </div>
+      <button @click.prevent="(e) => cartStore.add(product!)">Buy</button>
     </RouterLink>
   </li>
 </template>
@@ -41,6 +41,15 @@ const cartStore = useCartStore()
 
 .category p {
   text-align: center;
+}
+
+.link {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .image {
