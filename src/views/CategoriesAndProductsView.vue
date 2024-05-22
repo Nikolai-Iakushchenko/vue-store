@@ -10,31 +10,6 @@ import { getCategories } from '@/utils/getCategories'
 import ProductsList from '@/components/ProductsList.vue'
 import { useRoute } from 'vue-router'
 
-// const categoriesStore = useCategoriesStore()
-// const categories = computed(() => {
-//   return categoriesStore.categories
-// })
-//
-// categoriesStore.fetchCategories()
-//
-// const fetchAllProducts = async (): Promise<void> => {
-//   // error.value = category.value = products.value = null
-//   // isLoading.value = true
-//
-//   try {
-//     // category.value = await getCategory(categoryId)
-//     // const { productIds } = category.value
-//     const products = await getProducts()
-//
-//     console.log('products', products)
-//   } catch (err: any) {
-//     // error.value = err.toString()
-//   } finally {
-//     // isLoading.value = false
-//   }
-// }
-//
-// fetchAllProducts()
 const route = useRoute()
 const categories = ref<Category[] | []>([])
 const products = ref<Product[] | []>([])
@@ -42,57 +17,28 @@ const category = ref<Category | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-// const fetchCategoriesAndProducts = async () => {
-//   error.value = null
-//   categories.value = products.value = []
-//   isLoading.value = true
-//
-//   try {
-//     categories.value = await getCategories()
-//     products.value = await getProducts()
-//   } catch (e: any) {
-//     error.value = e.toString()
-//   } finally {
-//     isLoading.value = false
-//   }
-// }
-
 const fetchCategory = async (categoryId: string) => {
   error.value = category.value = null
+  products.value = categories.value = []
   isLoading.value = true
 
-  console.log('route.params.categoryId', route.params.categoryId)
-
   try {
-    if (!categories.value.length || route.params.categoryId === undefined) {
+    if (route.params.categoryId === undefined) {
       categories.value = await getCategories()
-    }
-
-    if (!products.value.length || route.params.categoryId === undefined) {
       products.value = await getProducts()
-    }
-
-    if (route.params.categoryId !== undefined) {
+    } else {
       category.value = await getCategory(categoryId)
-      // console.log('categories.value', categories.value)
-      console.log('category.value', category.value)
-      console.log('products.value', products.value)
+
+      if (!categories.value.length) {
+        categories.value = await getCategories()
+      }
 
       categories.value = categories.value.filter(
         (item) => item.parentId === category.value.id
       )
-
-      console.log('products.value', products.value)
-
-      // products.value = products.value.map((product) =>
-      //   product.categoryIds.filter((id) => id === category.value.id)
-      // )
-      products.value = products.value.filter((product) =>
-        category.value.productIds.includes(product.id)
-      )
+      const { productIds } = category.value
+      products.value = await getProducts(productIds)
     }
-
-    // category
   } catch (e: any) {
     error.value = e.toString()
   } finally {
