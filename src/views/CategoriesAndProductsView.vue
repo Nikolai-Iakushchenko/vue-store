@@ -93,9 +93,11 @@ const fetchCategory = async (categoryId: string) => {
   }
 }
 
-fetchCategoriesAndProducts()
+// fetchCategoriesAndProducts()
 
-watch(() => route.params.categoryId as string, fetchCategory)
+watch(() => route.params.categoryId as string, fetchCategory, {
+  immediate: true
+})
 </script>
 
 <template>
