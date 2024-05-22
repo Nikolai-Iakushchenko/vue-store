@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CategoriesView from '@/views/CategoriesView.vue'
+import CategoriesView from '@/views/CategoriesAndProductsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

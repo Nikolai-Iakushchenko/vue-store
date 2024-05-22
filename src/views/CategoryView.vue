@@ -7,58 +7,58 @@ import { getProducts } from '@/utils/getProducts'
 import type { ProductData } from '@/types/productTypes'
 import type { Ref } from 'vue'
 import { getCategory } from '@/utils/getCategory'
-import { useCategoriesStore } from '@/stores/CategoriesStore'
+// import { useCategoriesStore } from '@/stores/CategoriesStore'
 import CategoriesList from '@/components/CategoriesList.vue'
 
 const route = useRoute()
-const categoriesStore = useCategoriesStore()
+// const categoriesStore = useCategoriesStore()
 
 const category = ref<Category | null>(null)
 const products = ref<Ref<ProductData> | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
-const fetchProducts = async (categoryId: string): Promise<void> => {
-  error.value = category.value = products.value = null
-  isLoading.value = true
-
-  try {
-    category.value = await getCategory(categoryId)
-    const { productIds } = category.value
-    products.value = await getProducts(productIds)
-  } catch (err: any) {
-    error.value = err.toString()
-  } finally {
-    isLoading.value = false
-  }
-}
-
-watch(() => route.params.categoryId as string, fetchProducts, {
-  immediate: true
-})
+// const fetchProducts = async (categoryId: string): Promise<void> => {
+//   error.value = category.value = products.value = null
+//   isLoading.value = true
+//
+//   try {
+//     category.value = await getCategory(categoryId)
+//     const { productIds } = category.value
+//     products.value = await getProducts(productIds)
+//   } catch (err: any) {
+//     error.value = err.toString()
+//   } finally {
+//     isLoading.value = false
+//   }
+// }
+//
+// watch(() => route.params.categoryId as string, fetchProducts, {
+//   immediate: true
+// })
 </script>
 
 <template>
-  <div v-if="isLoading" class="loading">Loading...</div>
-  <div v-if="error" class="error">{{ error }}</div>
+  <!--  <div v-if="isLoading" class="loading">Loading...</div>-->
+  <!--  <div v-if="error" class="error">{{ error }}</div>-->
 
-  <div v-if="category && products">
-    <h2>Category: {{ category.name }}</h2>
-    <div v-if="categoriesStore.getSubcategories(category.id).length">
-      <h3>Subcategories:</h3>
-      <CategoriesList
-        :categories="categoriesStore.getSubcategories(category.id)"
-      />
-    </div>
-    <h3>Products:</h3>
-    <ul :class="$style.productList">
-      <ProductItem
-        v-for="product in products.items"
-        :key="product.id"
-        :product="product"
-      />
-    </ul>
-  </div>
+  <!--  <div v-if="category && products">-->
+  <!--    <h2>Category: {{ category.name }}</h2>-->
+  <!--    <div v-if="categoriesStore.getSubcategories(category.id).length">-->
+  <!--      <h3>Subcategories:</h3>-->
+  <!--      <CategoriesList-->
+  <!--        :categories="categoriesStore.getSubcategories(category.id)"-->
+  <!--      />-->
+  <!--    </div>-->
+  <!--    <h3>Products:</h3>-->
+  <!--    <ul :class="$style.productList">-->
+  <!--      <ProductItem-->
+  <!--        v-for="product in products.items"-->
+  <!--        :key="product.id"-->
+  <!--        :product="product"-->
+  <!--      />-->
+  <!--    </ul>-->
+  <!--  </div>-->
 </template>
 
 <style module>

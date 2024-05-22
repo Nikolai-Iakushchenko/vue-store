@@ -1,10 +1,10 @@
 import { storeId } from '@/constants'
 import axios from '@/axiosConfig'
-import type { ProductData } from '@/types/productTypes'
+import type { Product, ProductData } from '@/types/productTypes'
 
 export const getProducts = async (
   productIds?: number[]
-): Promise<ProductData> => {
+): Promise<Product[]> => {
   const productsSearchUrl = `https://app.ecwid.com/api/v3/${storeId}/products`
 
   const listOfProductIds = productIds?.map(Number).join(',')
@@ -19,5 +19,5 @@ export const getProducts = async (
 
   const { data } = productsResponse
 
-  return data
+  return data.items
 }

@@ -1,29 +1,30 @@
 <script lang="ts" setup>
 import CategoryItem from '@/components/CategoryItem.vue'
-import type { Category } from '@/types/categoriesTypes'
+import ProductItem from '@/components/ProductItem.vue'
+import type { Product } from '@/types/productTypes'
 
 interface Props {
-  categories: Category[]
+  products: Product[]
 }
 
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <div :class="$style.categories">
-    <h2 :class="$style.header">Categories</h2>
-    <ul :class="$style.categoriesList">
-      <CategoryItem
-        v-for="item in props.categories"
-        :key="item.id"
-        :item="item"
+  <div :class="$style.products">
+    <h2 :class="$style.header">Products</h2>
+    <ul :class="$style.productList">
+      <ProductItem
+        v-for="product in props.products"
+        :key="product.id"
+        :product="product"
       />
     </ul>
   </div>
 </template>
 
 <style module>
-.categories {
+.products {
   margin-top: 10px;
 }
 
@@ -32,7 +33,7 @@ const props = defineProps<Props>()
   background: lightgray;
 }
 
-.categoriesList {
+.productList {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
