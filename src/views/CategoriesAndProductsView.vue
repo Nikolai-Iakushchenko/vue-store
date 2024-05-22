@@ -33,9 +33,13 @@ const fetchCategory = async (categoryId: string) => {
         categories.value = await getCategories()
       }
 
-      categories.value = categories.value.filter(
-        (item) => item.parentId === category.value.id
-      )
+      if (category.value !== null) {
+        const { id: categoryId } = category.value
+        categories.value = categories.value.filter(
+          (item) => item.parentId === categoryId
+        )
+      }
+
       const { productIds } = category.value
       products.value = await getProducts(productIds)
     }
