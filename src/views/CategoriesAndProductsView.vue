@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 // import { useCategoriesStore } from '@/stores/CategoriesStore'
 import CategoriesList from '@/components/CategoriesList.vue'
 import { getCategory } from '@/utils/getCategory'
@@ -8,6 +8,7 @@ import type { Category } from '@/types/categoriesTypes'
 import type { Product } from '@/types/productTypes'
 import { getCategories } from '@/utils/getCategories'
 import ProductsList from '@/components/ProductsList.vue'
+import { useRoute } from 'vue-router'
 
 // const categoriesStore = useCategoriesStore()
 // const categories = computed(() => {
@@ -34,14 +35,16 @@ import ProductsList from '@/components/ProductsList.vue'
 // }
 //
 // fetchAllProducts()
-
-const categories = ref<Category[] | null>(null)
-const products = ref<Product[] | null>(null)
+const route = useRoute()
+const categories = ref<Category[] | []>([])
+const products = ref<Product[] | []>([])
+const category = ref<Category | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
 
 const fetchCategoriesAndProducts = async () => {
-  error.value = categories.value = products.value = null
+  error.value = null
+  categories.value = products.value = []
   isLoading.value = true
 
   try {
@@ -54,7 +57,42 @@ const fetchCategoriesAndProducts = async () => {
   }
 }
 
+const fetchCategory = async (categoryId: string) => {
+  if (route.params.categoryId !== undefined) {
+    console.log('route.params.categoryId', route.params.categoryId)
+    error.value = category.value = null
+    isLoading.value = true
+
+    try {
+      category.value = await getCategory(categoryId)
+      // console.log('categories.value', categories.value)
+      console.log('category.value', category.value)
+      console.log('products.value', products.value)
+
+      categories.value = categories.value.filter(
+        (item) => item.parentId === category.value.id
+      )
+
+      // console.log('products.value', products.value)
+      //
+      // products.value = products.value.map((product) =>
+      //   product.categoryIds.filter((id) => id === category.value.id)
+      // )
+
+      // category
+    } catch (e: any) {
+      error.value = e.toString()
+    } finally {
+      isLoading.value = false
+    }
+  } else {
+    fetchCategoriesAndProducts()
+  }
+}
+
 fetchCategoriesAndProducts()
+
+watch(() => route.params.categoryId as string, fetchCategory)
 </script>
 
 <template>
