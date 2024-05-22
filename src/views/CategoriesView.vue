@@ -2,6 +2,8 @@
 import { computed } from 'vue'
 import { useCategoriesStore } from '@/stores/CategoriesStore'
 import CategoriesList from '@/components/CategoriesList.vue'
+import { getCategory } from '@/utils/getCategory'
+import { getProducts } from '@/utils/getProducts'
 
 const categoriesStore = useCategoriesStore()
 const categories = computed(() => {
@@ -9,6 +11,25 @@ const categories = computed(() => {
 })
 
 categoriesStore.fetchCategories()
+
+const fetchAllProducts = async (): Promise<void> => {
+  // error.value = category.value = products.value = null
+  // isLoading.value = true
+
+  try {
+    // category.value = await getCategory(categoryId)
+    // const { productIds } = category.value
+    const products = await getProducts()
+
+    console.log('products', products)
+  } catch (err: any) {
+    // error.value = err.toString()
+  } finally {
+    // isLoading.value = false
+  }
+}
+
+fetchAllProducts()
 </script>
 
 <template>
