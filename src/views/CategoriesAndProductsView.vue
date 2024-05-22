@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
-// import { useCategoriesStore } from '@/stores/CategoriesStore'
+import { ref, watch } from 'vue'
 import CategoriesList from '@/components/CategoriesList.vue'
 import { getCategory } from '@/utils/getCategory'
 import { getProducts } from '@/utils/getProducts'
@@ -23,7 +22,7 @@ const fetchCategory = async (categoryId: string) => {
   isLoading.value = true
 
   try {
-    if (route.params.categoryId === undefined) {
+    if (!route.params.categoryId) {
       categories.value = await getCategories()
       products.value = await getProducts()
     } else {
