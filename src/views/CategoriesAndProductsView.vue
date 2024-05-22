@@ -58,10 +58,11 @@ const fetchCategoriesAndProducts = async () => {
 }
 
 const fetchCategory = async (categoryId: string) => {
+  error.value = category.value = null
+  isLoading.value = true
+
   if (route.params.categoryId !== undefined) {
     console.log('route.params.categoryId', route.params.categoryId)
-    error.value = category.value = null
-    isLoading.value = true
 
     try {
       category.value = await getCategory(categoryId)
@@ -89,8 +90,12 @@ const fetchCategory = async (categoryId: string) => {
       isLoading.value = false
     }
   } else {
-    fetchCategoriesAndProducts()
+    // fetchCategoriesAndProducts()
   }
+}
+
+if (!categories.value) {
+  fetchCategoriesAndProducts()
 }
 
 // fetchCategoriesAndProducts()
