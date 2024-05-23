@@ -2,7 +2,7 @@
 import type { Product } from '@/types/productTypes'
 import { useCartStore } from '@/stores/CartStore'
 
-type PropTypes = {
+interface PropTypes {
   product: Product
 }
 
@@ -25,7 +25,7 @@ const cartStore = useCartStore()
         <div>{{ props.product.name }}</div>
         <div>Price: {{ props.product.price }}</div>
       </div>
-      <button @click.prevent="(e) => cartStore.add(product!)">Buy</button>
+      <button @click.prevent="() => cartStore.add(product!)">Buy</button>
     </RouterLink>
   </li>
 </template>
@@ -47,7 +47,6 @@ const cartStore = useCartStore()
   height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
   align-items: start;
 }

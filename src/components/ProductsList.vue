@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import CategoryItem from '@/components/CategoryItem.vue'
 import ProductItem from '@/components/ProductItem.vue'
 import type { Product } from '@/types/productTypes'
 

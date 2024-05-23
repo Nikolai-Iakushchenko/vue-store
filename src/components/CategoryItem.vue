@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Category } from '@/types/categoriesTypes'
 
-type PropTypes = {
+interface PropTypes {
   item: Category
 }
 

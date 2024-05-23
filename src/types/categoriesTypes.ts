@@ -1,17 +1,13 @@
-export type ImageDetails = {
+export interface ImageDetails {
   url: string
   width: number
   height: number
 }
 
-export type Category = {
+export interface Category {
   id: number
   parentId: number
   name: string
   thumbnail: ImageDetails
   productIds: number[]
-}
-
-export type CategoriesData = {
-  items: Category[]
 }

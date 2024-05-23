@@ -5,6 +5,6 @@ export interface CartItem extends Product {
   cartId: string
 }
 
-export type CartState = {
+export interface CartState {
   cart: RemovableRef<CartItem[]>
 }

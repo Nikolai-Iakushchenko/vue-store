@@ -2,7 +2,7 @@
 import { useCartStore } from '@/stores/CartStore'
 import type { CartItem } from '@/types/cartTypes'
 
-type PropTypes = {
+interface PropTypes {
   cartItem: CartItem
 }
 

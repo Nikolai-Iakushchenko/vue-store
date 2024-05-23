@@ -1,6 +1,6 @@
 import { storeId } from '@/constants'
 import axios from '@/axiosConfig'
-import type { Product, ProductData } from '@/types/productTypes'
+import type { Product } from '@/types/productTypes'
 
 export const getProducts = async (
   productIds?: number[]

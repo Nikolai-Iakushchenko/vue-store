@@ -8,7 +8,3 @@ export interface Product {
   defaultCategoryId: number
   volume: number
 }
-
-export type ProductData = {
-  items: Product[]
-}
