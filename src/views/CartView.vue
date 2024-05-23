@@ -9,9 +9,12 @@ const cart = computed(() => {
 })
 
 const purchaseMade = ref(false)
+const purchased = ref('')
 
 const placePurchase = () => {
   purchaseMade.value = true
+  purchased.value = cart.value
+  cartStore.empty()
 }
 </script>
 
@@ -27,7 +30,12 @@ const placePurchase = () => {
   >
     Place Order
   </button>
-  <p v-if="purchaseMade">Congratulations on your purchase!</p>
+  <div v-if="purchaseMade">
+    <p>Congratulations on your purchase!</p>
+    <ul>
+      <li v-for="item in purchased" :key="item.cartId">{{ item.name }}</li>
+    </ul>
+  </div>
 </template>
 
 <style module>

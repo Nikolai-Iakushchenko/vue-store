@@ -16,6 +16,9 @@ export const useCartStore = defineStore('CartStore', {
     },
     delete(cartId: string) {
       this.cart = this.cart.filter((item) => item.cartId !== cartId)
+    },
+    empty() {
+      this.cart = []
     }
   }
 })
