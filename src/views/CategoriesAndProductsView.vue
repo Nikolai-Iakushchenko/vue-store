@@ -10,8 +10,8 @@ import ProductsList from '@/components/ProductsList.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const categories = ref<Category[] | []>([])
-const products = ref<Product[] | []>([])
+const categories = ref<Category[]>([])
+const products = ref<Product[]>([])
 const category = ref<Category | null>(null)
 const isLoading = ref(false)
 const error = ref(null)
