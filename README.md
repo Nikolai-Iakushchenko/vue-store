@@ -1,7 +1,3 @@
-# vue-store
-
-Deployed to https://niks-vue-store.netlify.app/
-
 ## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we
